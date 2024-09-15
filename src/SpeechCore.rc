@@ -1,0 +1,31 @@
+#include <winver.h>
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1,1,0,0
+ PRODUCTVERSION 1,1,0,0
+ FILEFLAGSMASK 0x3fL
+ FILEFLAGS 0x0L
+ FILEOS VOS__WINDOWS32
+ FILETYPE VFT_DLL
+{
+    BLOCK "StringFileInfo"
+    {
+        BLOCK "040904E4" // Language and code page (US English, Unicode)
+        {
+            VALUE "CompanyName", "Oussama Ben Gatrane"
+            VALUE "FileDescription", "Cross-platform C++ library for screen reader output."
+            VALUE "FileVersion", "1.1.0"
+            VALUE "InternalName", "SpeechCore"
+            VALUE "LegalCopyright", "Copyright (C) 2024 Oussama Ben Gatrane"
+            VALUE "OriginalFilename", "SpeechCore.dll"
+            VALUE "ProductName", "SpeechCore Library"
+            VALUE "ProductVersion", "1.1.0"
+            VALUE "Author", "Oussama AKA Still standing"
+            VALUE "License", "MIT License"
+        }
+    }
+    BLOCK "VarFileInfo"
+    {
+        VALUE "Translation", 0x0409, 1200  // US English, Unicode code page
+    }
+}

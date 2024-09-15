@@ -1,0 +1,72 @@
+# github workflow file, build macos/linux binaries.
+name: Build
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+        build_mode: [shared, static]
+        build_type: [release, debug]
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      - name: Set up Java
+        uses: actions/setup-java@v3
+        with:
+          java-version: '21'
+          distribution: 'zulu'
+
+      # macOS-specific setup: Install Xcode Command Line Tools and SCons
+      - name: Install Xcode Command Line Tools (macOS)
+        if: matrix.os == 'macos-latest'
+        run: |
+          sudo xcode-select --install || echo "Xcode Command Line Tools already installed"
+          brew install scons
+
+      # Ubuntu-specific setup: Install GCC, Python, SCons, and Speech Dispatcher
+      - name: Install dependencies (Ubuntu)
+        if: matrix.os == 'ubuntu-latest'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y build-essential gcc g++ python3 python3-pip speech-dispatcher libspeechd-dev
+          sudo pip3 install scons
+
+      # Java Specific checks
+      - name: Check JAVA_HOME
+        run: echo $JAVA_HOME
+
+      - name: List Java Installation Directory
+        run: |
+          ls -l $JAVA_HOME
+          ls -l $JAVA_HOME/lib
+
+      # Build the project
+      - name: Build with SCons
+        run: |
+          scons -Q build_mode=${{ matrix.build_mode }} build_type=${{ matrix.build_type }}
+
+      # Upload build artifacts
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: build-artifacts
+          path: |
+            build/
+            lib/

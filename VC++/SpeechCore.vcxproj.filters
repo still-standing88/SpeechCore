@@ -1,0 +1,122 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="src">
+      <UniqueIdentifier>{182bb914-d746-4773-b7ce-57d04e9c1cbc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\ThirdParti">
+      <UniqueIdentifier>{d5631231-5feb-463e-a295-34bdfbeb2fdb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\wrappers">
+      <UniqueIdentifier>{d64909aa-3ead-4544-8a18-05c42966b98e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\ScDrivers">
+      <UniqueIdentifier>{b1fd0dad-6f00-466b-b8e0-2025e8c99d3f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include">
+      <UniqueIdentifier>{cfab88dd-6ced-4c43-a334-c615a04b68f6}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\ThirdParty\fsapi.c">
+      <Filter>src\ThirdParti</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ThirdParty\wasapi.cpp">
+      <Filter>src\ThirdParti</Filter>
+    </ClCompile>
+    <ClCompile Include="src\wrappers\saapi.cpp">
+      <Filter>src\wrappers</Filter>
+    </ClCompile>
+    <ClCompile Include="src\wrappers\SapiSpeech.cpp">
+      <Filter>src\wrappers</Filter>
+    </ClCompile>
+    <ClCompile Include="src\wrappers\zdsrapi.cpp">
+      <Filter>src\wrappers</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SCDrivers\jaws.cpp">
+      <Filter>src\ScDrivers</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SCDrivers\nvda.cpp">
+      <Filter>src\ScDrivers</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SCDrivers\sa.cpp">
+      <Filter>src\ScDrivers</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SCDrivers\sapi5driver.cpp">
+      <Filter>src\ScDrivers</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SCDrivers\zdsr.cpp">
+      <Filter>src\ScDrivers</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SpeechCore.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SpeechCore_JNI.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\ThirdParty\fsapi.h">
+      <Filter>src\ThirdParti</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ThirdParty\nvdaController.h">
+      <Filter>src\ThirdParti</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ThirdParty\wasapi.h">
+      <Filter>src\ThirdParti</Filter>
+    </ClInclude>
+    <ClInclude Include="src\wrappers\saapi.h">
+      <Filter>src\wrappers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\wrappers\SapiSpeech.h">
+      <Filter>src\wrappers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\wrappers\zdsrapi.h">
+      <Filter>src\wrappers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\SCDrivers\drivers.h">
+      <Filter>src\ScDrivers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\SCDrivers\jaws.h">
+      <Filter>src\ScDrivers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\SCDrivers\nvda.h">
+      <Filter>src\ScDrivers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\SCDrivers\sa.h">
+      <Filter>src\ScDrivers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\SCDrivers\sapi5driver.h">
+      <Filter>src\ScDrivers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\SCDrivers\SCDriver.h">
+      <Filter>src\ScDrivers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\SCDrivers\zdsr.h">
+      <Filter>src\ScDrivers</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SpeechCore.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="src\SpeechCore_JNI.h">
+      <Filter>src</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="src\SpeechCore.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+</Project>

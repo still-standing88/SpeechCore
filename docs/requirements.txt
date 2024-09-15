@@ -1,0 +1,6 @@
+docutils
+breathe
+sphinx
+sphinx_rtd_theme
+sphinx-sitemap
+myst-parser
