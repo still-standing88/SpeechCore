@@ -1,3 +1,4 @@
+import sys
 from .__speech_common import *
 from .SpeechCore import (
     sapi_init, sapi_loaded, sapi_release,

@@ -1,3 +1,4 @@
+import sys
 from functools import wraps
 
 from .SpeechCore import (
