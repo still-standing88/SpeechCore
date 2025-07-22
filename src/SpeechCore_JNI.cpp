@@ -32,10 +32,9 @@ extern "C" {
     }
 
     JNIEXPORT jstring JNICALL Java_SpeechCore_Speech_1Current_1Driver(JNIEnv* env, jobject) {
-        const wchar_t* driver = Speech_Current_Driver();
-        return env->NewString(reinterpret_cast<const jchar*>(driver), wcslen(driver));
+    const wchar_t* driver = Speech_Current_Driver();
+    return env->NewString(reinterpret_cast<const jchar*>(driver), wcslen(driver));
     }
-
     JNIEXPORT jstring JNICALL Java_SpeechCore_Speech_1Get_1Driver(JNIEnv* env, jobject, jint index) {
         const wchar_t* driver = Speech_Get_Driver(static_cast<int>(index));
         return env->NewString(reinterpret_cast<const jchar*>(driver), wcslen(driver));
@@ -62,27 +61,15 @@ extern "C" {
     }
 
     JNIEXPORT jboolean JNICALL Java_SpeechCore_Speech_1Output(JNIEnv* env, jobject, jstring text, jboolean _interrupt) {
-        const jchar* jtext = env->GetStringChars(text, nullptr);
-        if (jtext == nullptr) {
-            return JNI_FALSE;
-        }
-        const wchar_t* wtext = reinterpret_cast<const wchar_t*>(jtext);
-        bool result = Speech_Output(wtext, static_cast<bool>(_interrupt));
-        env->ReleaseStringChars(text, reinterpret_cast<const jchar*>(wtext));
-        return static_cast<jboolean>(result);
+    const jchar* jtext = env->GetStringChars(text, nullptr);
+    if (jtext == nullptr) {
+        return JNI_FALSE;
     }
-
-    JNIEXPORT jboolean JNICALL Java_SpeechCore_Speech_1Output_1text(JNIEnv* env, jobject, jstring text, jboolean _interrupt, jboolean _with_ssml) {
-        const jchar* jtext = env->GetStringChars(text, nullptr);
-        if (jtext == nullptr) {
-            return JNI_FALSE;
-        }
-        const wchar_t* wtext = reinterpret_cast<const wchar_t*>(jtext);
-        bool result = Speech_Output_text(wtext, static_cast<bool>(_interrupt), static_cast<bool>(_with_ssml));
-        env->ReleaseStringChars(text, reinterpret_cast<const jchar*>(wtext));
-        return static_cast<jboolean>(result);
+    const wchar_t* wtext = reinterpret_cast<const wchar_t*>(jtext);
+    bool result = Speech_Output(wtext, static_cast<bool>(_interrupt));
+    env->ReleaseStringChars(text, reinterpret_cast<const jchar*>(wtext));
+    return static_cast<jboolean>(result);
     }
-
     JNIEXPORT jboolean JNICALL Java_SpeechCore_Speech_1Braille(JNIEnv* env, jobject, jstring text) {
         const jchar* jtext = env->GetStringChars(text, nullptr);
         if (jtext == nullptr) {
@@ -114,23 +101,14 @@ extern "C" {
         Speech_Set_Rate(static_cast<float>(rate));
     }
 
-    JNIEXPORT jfloat JNICALL Java_SpeechCore_Speech_1Get_1Pitch(JNIEnv*, jobject) {
-        return static_cast<jfloat>(Speech_Get_Pitch());
-    }
-
-    JNIEXPORT void JNICALL Java_SpeechCore_Speech_1Set_1Pitch(JNIEnv*, jobject, jfloat pitch) {
-        Speech_Set_Pitch(static_cast<float>(pitch));
-    }
-
-    JNIEXPORT jstring JNICALL Java_SpeechCore_Speech_1Get_1Current_1Voice(JNIEnv* env, jobject) {
-        const wchar_t* voice = Speech_Get_Current_Voice();
-        return env->NewString(reinterpret_cast<const jchar*>(voice), wcslen(voice));
-    }
+JNIEXPORT jstring JNICALL Java_SpeechCore_Speech_1Get_1Current_1Voice(JNIEnv* env, jobject) {
+    const wchar_t* voice = Speech_Get_Current_Voice();
+    return env->NewString(reinterpret_cast<const jchar*>(voice), wcslen(voice));
+}
 
     JNIEXPORT void JNICALL Java_SpeechCore_Speech_1Set_1Voice(JNIEnv*, jobject, jint index) {
         Speech_Set_Voice(static_cast<int>(index));
     }
-
     JNIEXPORT jstring JNICALL Java_SpeechCore_Speech_1Get_1Voice(JNIEnv* env, jobject, jint index) {
         const wchar_t* voice = Speech_Get_Voice(static_cast<int>(index));
         return env->NewString(reinterpret_cast<const jchar*>(voice), wcslen(voice));
@@ -140,21 +118,21 @@ extern "C" {
         return static_cast<jint>(Speech_Get_Voices());
     }
 
-    JNIEXPORT void JNICALL Java_SpeechCore_Speech_1Output_1File(JNIEnv* env, jobject, jstring filePath, jstring text) {
-        const char* cfilePath = env->GetStringUTFChars(filePath, nullptr);
-        if (cfilePath == nullptr) {
-            return; // String conversion failed
-        }
-        const jchar* jtext = env->GetStringChars(text, nullptr);
-        if (jtext == nullptr) {
-            env->ReleaseStringUTFChars(filePath, cfilePath);
-            return; // String conversion failed
-        }
-        const wchar_t* wtext = reinterpret_cast<const wchar_t*>(jtext);
-        Speech_Output_File(cfilePath, wtext);
-        env->ReleaseStringUTFChars(filePath, cfilePath);
-        env->ReleaseStringChars(text, reinterpret_cast<const jchar*>(wtext));
+JNIEXPORT void JNICALL Java_SpeechCore_Speech_1Output_1File(JNIEnv* env, jobject, jstring filePath, jstring text) {
+    const char* cfilePath = env->GetStringUTFChars(filePath, nullptr);
+    if (cfilePath == nullptr) {
+        return; // String conversion failed
     }
+    const jchar* jtext = env->GetStringChars(text, nullptr);
+    if (jtext == nullptr) {
+        env->ReleaseStringUTFChars(filePath, cfilePath);
+        return; // String conversion failed
+    }
+    const wchar_t* wtext = reinterpret_cast<const wchar_t*>(jtext);
+    Speech_Output_File(cfilePath, wtext);
+    env->ReleaseStringUTFChars(filePath, cfilePath);
+    env->ReleaseStringChars(text, reinterpret_cast<const jchar*>(wtext));
+}
 
     JNIEXPORT void JNICALL Java_SpeechCore_Speech_1Resume(JNIEnv*, jobject) {
         Speech_Resume();
@@ -181,25 +159,25 @@ extern "C" {
         Sapi_Release();
     }
 
-    JNIEXPORT jstring JNICALL Java_SpeechCore_Sapi_1Get_1Current_1Voice(JNIEnv* env, jobject) {
-        const wchar_t* voice = Sapi_Get_Current_Voice();
-        return env->NewString(reinterpret_cast<const jchar*>(voice), wcslen(voice));
-    }
+JNIEXPORT jstring JNICALL Java_SpeechCore_Sapi_1Get_1Current_1Voice(JNIEnv* env, jobject) {
+    const wchar_t* voice = Sapi_Get_Current_Voice();
+    return env->NewString(reinterpret_cast<const jchar*>(voice), wcslen(voice));
+}
 
-    JNIEXPORT jstring JNICALL Java_SpeechCore_Sapi_1Get_1Voice(JNIEnv* env, jobject, jint index) {
-        const wchar_t* voice = Sapi_Get_Voice(static_cast<int>(index));
-        return env->NewString(reinterpret_cast<const jchar*>(voice), wcslen(voice));
-    }
+JNIEXPORT jstring JNICALL Java_SpeechCore_Sapi_1Get_1Voice(JNIEnv* env, jobject, jint index) {
+    const wchar_t* voice = Sapi_Get_Voice(static_cast<int>(index));
+    return env->NewString(reinterpret_cast<const jchar*>(voice), wcslen(voice));
+}
 
-    JNIEXPORT void JNICALL Java_SpeechCore_Sapi_1Set_1Voice(JNIEnv* env, jobject, jstring voice) {
-        const jchar* jvoice = env->GetStringChars(voice, nullptr);
-        if (jvoice == nullptr) {
-            return; // String conversion failed
-        }
-        const wchar_t* wvoice = reinterpret_cast<const wchar_t*>(jvoice);
-        Sapi_Set_Voice(wvoice);
-        env->ReleaseStringChars(voice, reinterpret_cast<const jchar*>(wvoice));
+JNIEXPORT void JNICALL Java_SpeechCore_Sapi_1Set_1Voice(JNIEnv* env, jobject, jstring voice) {
+    const jchar* jvoice = env->GetStringChars(voice, nullptr);
+    if (jvoice == nullptr) {
+        return; // String conversion failed
     }
+    const wchar_t* wvoice = reinterpret_cast<const wchar_t*>(jvoice);
+    Sapi_Set_Voice(wvoice);
+    env->ReleaseStringChars(voice, reinterpret_cast<const jchar*>(wvoice));
+}
 
     JNIEXPORT void JNICALL Java_SpeechCore_Sapi_1Set_1Voice_1By_1Index(JNIEnv*, jobject, jint index) {
         Sapi_Set_Voice_By_Index(static_cast<int>(index));
@@ -225,32 +203,31 @@ extern "C" {
         Sapi_Voice_Set_Rate(static_cast<float>(rate));
     }
 
-    JNIEXPORT void JNICALL Java_SpeechCore_Sapi_1Speak(JNIEnv* env, jobject, jstring text, jboolean _interrupt, jboolean _xml) {
-        const jchar* jtext = env->GetStringChars(text, nullptr);
-        if (jtext == nullptr) {
-            return; // String conversion failed
-        }
-        const wchar_t* wtext = reinterpret_cast<const wchar_t*>(jtext);
-        Sapi_Speak(wtext, static_cast<bool>(_interrupt), static_cast<bool>(_xml));
-        env->ReleaseStringChars(text, reinterpret_cast<const jchar*>(wtext));
+JNIEXPORT void JNICALL Java_SpeechCore_Sapi_1Speak(JNIEnv* env, jobject, jstring text, jboolean _interrupt, jboolean _xml) {
+    const jchar* jtext = env->GetStringChars(text, nullptr);
+    if (jtext == nullptr) {
+        return; // String conversion failed
     }
+    const wchar_t* wtext = reinterpret_cast<const wchar_t*>(jtext);
+    Sapi_Speak(wtext, static_cast<bool>(_interrupt), static_cast<bool>(_xml));
+    env->ReleaseStringChars(text, reinterpret_cast<const jchar*>(wtext));
+}
 
-    JNIEXPORT void JNICALL Java_SpeechCore_Sapi_1Output_1File(JNIEnv* env, jobject, jstring filename, jstring text, jboolean _xml) {
-        const char* cfilename = env->GetStringUTFChars(filename, nullptr);
-        if (cfilename == nullptr) {
-            return; // String conversion failed
-        }
-        const jchar* jtext = env->GetStringChars(text, nullptr);
-        if (jtext == nullptr) {
-            env->ReleaseStringUTFChars(filename, cfilename);
-            return; // String conversion failed
-        }
-        const wchar_t* wtext = reinterpret_cast<const wchar_t*>(jtext);
-        Sapi_Output_File(cfilename, wtext, static_cast<bool>(_xml));
+JNIEXPORT void JNICALL Java_SpeechCore_Sapi_1Output_1File(JNIEnv* env, jobject, jstring filename, jstring text, jboolean _xml) {
+    const char* cfilename = env->GetStringUTFChars(filename, nullptr);
+    if (cfilename == nullptr) {
+        return; // String conversion failed
+    }
+    const jchar* jtext = env->GetStringChars(text, nullptr);
+    if (jtext == nullptr) {
         env->ReleaseStringUTFChars(filename, cfilename);
-        env->ReleaseStringChars(text, reinterpret_cast<const jchar*>(wtext));
+        return; // String conversion failed
     }
-
+    const wchar_t* wtext = reinterpret_cast<const wchar_t*>(jtext);
+    Sapi_Output_File(cfilename, wtext, static_cast<bool>(_xml));
+    env->ReleaseStringUTFChars(filename, cfilename);
+    env->ReleaseStringChars(text, reinterpret_cast<const jchar*>(wtext));
+}
     JNIEXPORT void JNICALL Java_SpeechCore_Sapi_1Pause(JNIEnv*, jobject) {
         Sapi_Pause();
     }
