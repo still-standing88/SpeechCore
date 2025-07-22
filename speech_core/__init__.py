@@ -5,7 +5,7 @@
 # Only one instance of SpeechCore mey exist at a time, this goes for sapi as well.
 # All functions have bin converted to lower snake case and the Speech prefix have bin removed.
 
-import sys
+import os, sys
 
 from .__speech_common import *
 from .SpeechCore import (
@@ -19,6 +19,14 @@ from .SpeechCore import (
 
 if sys.platform == "win32":
     from .__speech_sapi import Sapi
+    
+    module_path = os.path.dirname(os.path.abspath(__file__))
+
+
+def add_dll_directory(dll_path):
+    os.add_dll_directory(dll_path)
+    os.environ["PATH"] += dll_path+os.pathsep
+
 
 class SpeechCore:
 
@@ -148,3 +156,7 @@ __all__ = [
     "get_flags",
     "SpeechCore", "Sapi"
     ]
+
+if sys.platform == "win32":
+    module_path = os.path.dirname(os.path.abspath(__file__))
+    add_dll_directory(module_path)
