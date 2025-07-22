@@ -66,7 +66,7 @@ bool ScreenReaderPCTalker::speak_text(const wchar_t* text, bool interrupt) {
     return false;
 }
 
-bool ScreenReaderPCTalker::speak_text(const wchar_t* text, bool interrupt, bool with_ssml) {
+bool ScreenReaderPCTalker::output_text(const wchar_t* text, bool interrupt, bool with_ssml) {
 return this->speak_text(text, interrupt);
 }
 

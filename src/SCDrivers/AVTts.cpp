@@ -66,7 +66,7 @@ bool AVTTSVoiceDriver::speak_text(const wchar_t* text, bool interrupt) {
 }
 
 
-bool AVTTSVoiceDriver::speak_text(const wchar_t* text, bool interrupt, bool with_ssml) {
+bool AVTTSVoiceDriver::output_text(const wchar_t* text, bool interrupt, bool with_ssml) {
 return this->speak_text(text, interrupt);
 }
 

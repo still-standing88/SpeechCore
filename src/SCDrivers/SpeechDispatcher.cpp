@@ -74,7 +74,7 @@ bool SpeechDispatcher::speak_text(const wchar_t* text, bool interrupt) {
     return spd_say(speech_connection, interrupt ? SPD_IMPORTANT : SPD_TEXT, utf8_text.data()) == 0;
 }
 
-bool SpeechDispatcher::speak_text(const wchar_t* text, bool interrupt, bool with_ssml) {
+bool SpeechDispatcher::output_text(const wchar_t* text, bool interrupt, bool with_ssml) {
 return this->speak_text(text, interrupt);
 }
 

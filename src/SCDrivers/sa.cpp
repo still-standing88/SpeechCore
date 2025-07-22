@@ -34,7 +34,7 @@ ScreenReaderSystemAccess::~ScreenReaderSystemAccess() {
 		return sa_speak(text, interrupt);
 	}
 
-	bool ScreenReaderSystemAccess::speak_text(const wchar_t* text,bool interrupt, bool with_ssml) {
+	bool ScreenReaderSystemAccess::output_text(const wchar_t* text,bool interrupt, bool with_ssml) {
 return this->speak_text(text, interrupt);
 }
 

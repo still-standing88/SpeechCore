@@ -83,7 +83,7 @@ if (this->module) {
 		return false;
 	}
 
-	bool ScreenReaderNVDA::speak_text(const wchar_t* text,bool interrupt, with_ssml) {
+	bool ScreenReaderNVDA::output_text(const wchar_t* text,bool interrupt, bool with_ssml) {
 return this->speak_text(text, interrupt);
 }
 

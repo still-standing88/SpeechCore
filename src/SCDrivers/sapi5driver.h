@@ -16,7 +16,7 @@ public:
 	bool is_speaking() override;
 	bool is_running() override;
 	bool speak_text(const wchar_t* text, bool interrupt = false) override;
-	bool speak_text(const wchar_t* text, bool interrupt = false, bool with_ssml= false) override;
+	bool output_text(const wchar_t* text,bool interrupt=false, bool with_ssml = false) override;
 	bool stop_speech() override;
 	void output_file(const char* filePath, const wchar_t* text) override;
 	float get_volume() const override;

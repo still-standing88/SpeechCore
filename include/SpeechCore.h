@@ -44,7 +44,7 @@
 #define SC_HAS_SPEECH (1<<4)
 #define SC_HAS_BRAILLE (1<<5)
 #define SC_HAS_SPEECH_STATE (1<<6)
-#define SC_SSML_SUPPORT(1<<7)
+#define SC_SSML_SUPPORT (1<<7)
 
 #ifdef __cplusplus
 #include <cstdint>

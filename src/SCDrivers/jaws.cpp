@@ -63,7 +63,7 @@ auto res = this->module->SayString(str,interrupt_speach,&bool_var);
 		return false;
 	}
 
-	bool ScreenReaderJaws::speak_text(const wchar_t* text, bool interrupt, bool with_ssml) {
+	bool ScreenReaderJaws::output_text(const wchar_t* text, bool interrupt, bool with_ssml) {
 return this->speak_text(text, interrupt);
 }
 

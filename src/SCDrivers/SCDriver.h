@@ -23,7 +23,7 @@ public:
 	virtual bool is_speaking() = 0;
 
 	virtual bool speak_text(const wchar_t* text,bool interrupt=false) =0;
-	virtual bool speak_text(const wchar_t* text,bool interrupt=false, bool with_ssml = False) {}
+	virtual bool output_text(const wchar_t* text,bool interrupt=false, bool with_ssml = false) = 0;
 	virtual bool stop_speech() =0;
 	virtual bool output_braille(const wchar_t* text) { return false; }
 	virtual void output_file(const char* filePath, const wchar_t* text) {}

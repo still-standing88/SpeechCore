@@ -287,19 +287,19 @@ extern "C" SPEECH_C_API bool Speech_Output(const wchar_t* text, bool _interrupt)
 	return false;
 }
 
-extern "C" SPEECH_C_API bool Speech_Output(const wchar_t* text, bool interrupt, bool with_ssml) {
+extern "C" SPEECH_C_API bool Speech_Output_text(const wchar_t* text, bool interrupt, bool with_ssml) {
 	if (current_driver == nullptr) {
 		Speech_Detect_Driver();
 	}
 
 	if (current_driver != nullptr && current_driver->is_running() && text) {
-		return current_driver->speak_text(text, interrupt, with_ssml);
+		return current_driver->output_text(text, interrupt, with_ssml);
 	}
 	else {
 		Speech_Detect_Driver();
 
 		if (current_driver != nullptr && !current_driver->is_running() && text) {
-			return current_driver->speak_text(text, interrupt, with_ssml);
+			return current_driver->output_text(text, interrupt, with_ssml);
 }
 		return false;
 	}

@@ -47,7 +47,7 @@ return (this->result == 0) ? true : false;
 	}
 
 
-	bool ScreenReaderZhengdu::speak_text(const wchar_t* text,bool interrupt, bool with_ssml) {
+	bool ScreenReaderZhengdu::output_text(const wchar_t* text,bool interrupt, bool with_ssml) {
 return this->speak_text(text, interrupt);
 }
 
