@@ -10,14 +10,16 @@ import os, sys
 from .__speech_common import *
 from .SpeechCore import (
     init, is_loaded, free, resume, pause, stop,
-    output, output_file, braille,
+    output, output_text, output_file, braille,
     set_driver, get_driver, get_drivers, current_driver, detect_driver,
-    get_voice, get_voices, set_voice,
+    get_voice, get_voices, get_current_voice, set_voice,
     get_rate, set_rate, get_volume, set_volume,
-    get_flags
+    get_pitch, set_pitch,
+    get_flags, is_speaking
     )
 
 if sys.platform == "win32":
+    from .__speech_common import prefer_sapi
     from .__speech_sapi import Sapi
     
     module_path = os.path.dirname(os.path.abspath(__file__))
@@ -44,7 +46,8 @@ class SpeechCore:
 
     @classmethod
     def prefer_sapi(cls, prefer_sapi: bool):
-        prefer_sapi(prefer_sapi)
+        if sys.platform == "win32":
+            prefer_sapi(prefer_sapi)
 
     @classmethod
     def is_loaded(cls) -> bool:
@@ -95,25 +98,32 @@ class SpeechCore:
         return get_voices()
 
     @CheckInit
-    def set_volume(self, offset: float) ->None :
-        set_volume(offset)
+    def set_volume(self, volume: float) ->None :
+        set_volume(volume)
 
     @CheckInit
     def get_volume(self) ->float :
         return get_volume()
 
     @CheckInit
-    def set_rate(self, offset: float) ->None :
-        set_rate(offset)
+    def set_rate(self, rate: float) ->None :
+        set_rate(rate)
 
     @CheckInit
     def get_rate(self) ->float :
         return get_rate()
 
     @CheckInit
+    def set_pitch(self, pitch: float) ->None :
+        set_pitch(pitch)
+
+    @CheckInit
+    def get_pitch(self) ->float :
+        return get_pitch()
+
+    @CheckInit
     def is_speaking(self) ->bool :
         return is_speaking()
-
 
     @CheckInit
     def get_speech_flags(self) ->int :
@@ -127,12 +137,16 @@ class SpeechCore:
         return output(text, interrupt)
 
     @CheckInit
+    def output_text(self, text: str, interrupt: bool = False, with_ssml: bool = False) -> bool:
+        return output_text(text, interrupt, with_ssml)
+
+    @CheckInit
     def output_braille(self, text: str) ->bool :
         return braille(text)
 
     @CheckInit
     def output_file(self, filename: str, text: str) ->None :
-        output_file(file_name, text)
+        output_file(filename, text)
 
     @CheckInit
     def resume(self) ->None :
@@ -148,12 +162,13 @@ class SpeechCore:
 
 
 __all__ = [
-        "init", "free", "resume", "pause", "stop",
-    "output", "output_file", "braille",
+        "init", "is_loaded", "free", "resume", "pause", "stop",
+    "output", "output_text", "output_file", "braille",
     "set_driver", "get_driver", "get_drivers", "current_driver", "detect_driver",
-    "get_voice", "get_voices", "set_voice",
+    "get_voice", "get_voices", "get_current_voice", "set_voice",
     "get_rate", "set_rate", "get_volume", "set_volume",
-    "get_flags",
+    "get_pitch", "set_pitch",
+    "get_flags", "is_speaking",
     "SpeechCore", "Sapi"
     ]
 

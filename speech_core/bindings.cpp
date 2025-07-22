@@ -44,6 +44,7 @@ PYBIND11_MODULE(SpeechCore, m) {
     m.attr("SC_HAS_SPEECH") = py::int_(SC_HAS_SPEECH);
     m.attr("SC_HAS_BRAILLE") = py::int_(SC_HAS_BRAILLE);
     m.attr("SC_HAS_SPEECH_STATE") = py::int_(SC_HAS_SPEECH_STATE);
+    m.attr("SC_SSML_SUPPORT") = py::int_(SC_SSML_SUPPORT);
 
     m.def("init", &Speech_Init);
     m.def("free", &Speech_Free);
@@ -77,6 +78,12 @@ PYBIND11_MODULE(SpeechCore, m) {
         return Speech_Output(wtext_holder.c_str(), interrupt);
     }, py::arg("text"), py::arg("interrupt") = false);
     
+    m.def("output_text", [](const std::string& text, bool interrupt = false, bool with_ssml = false) -> bool {
+        static thread_local std::wstring wtext_holder;
+        wtext_holder = string_to_wstring(text);
+        return Speech_Output_text(wtext_holder.c_str(), interrupt, with_ssml);
+    }, py::arg("text"), py::arg("interrupt") = false, py::arg("with_ssml") = false);
+    
     m.def("braille", [](const std::string& text) -> bool {
         static thread_local std::wstring wtext_holder;
         wtext_holder = string_to_wstring(text);
@@ -88,6 +95,8 @@ PYBIND11_MODULE(SpeechCore, m) {
     m.def("set_volume", &Speech_Set_Volume, py::arg("volume"));
     m.def("get_rate", &Speech_Get_Rate);
     m.def("set_rate", &Speech_Set_Rate, py::arg("rate"));
+    m.def("get_pitch", &Speech_Get_Pitch);
+    m.def("set_pitch", &Speech_Set_Pitch, py::arg("pitch"));
     
     m.def("get_current_voice", []() -> py::object {
         const wchar_t* voice = Speech_Get_Current_Voice();
