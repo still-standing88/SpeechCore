@@ -9,14 +9,17 @@ SC_SPEECH_PARAMETER_CONTROL | SC_FILE_OUTPUT | SC_HAS_SPEECH_STATE),
 ScreenReaderSapi5::~ScreenReaderSapi5() {
 	this->release();
 	}
+
 	void ScreenReaderSapi5::init() {
 		if (!this->loaded) {
 			loaded = true;
 		}
+
 		if (this->loaded && !this->Is_Active) {
 			this->is_running();
 		}
 	}
+
 	void ScreenReaderSapi5::release() {
 		if (this->module != nullptr) {
 			this->loaded = false;
@@ -25,6 +28,7 @@ ScreenReaderSapi5::~ScreenReaderSapi5() {
 			this->module = nullptr;
 		}
 	}
+
 	bool ScreenReaderSapi5::is_running() {
 		if (this->module != nullptr) {
 			this->Is_Active = (this->module==NULL) ? false : true;
@@ -32,12 +36,14 @@ ScreenReaderSapi5::~ScreenReaderSapi5() {
 		}
 		return false;
 	}
+
 	bool ScreenReaderSapi5::is_speaking() {
 		if (this->module != nullptr) {
 			return this->module->is_speaking();
 		}
 		return false;
 	}
+
 	bool ScreenReaderSapi5::speak_text(const wchar_t* text,bool interrupt) {
 		if (this->module != nullptr) {
 			this->module->speak_text(text, interrupt=interrupt);
@@ -45,6 +51,15 @@ ScreenReaderSapi5::~ScreenReaderSapi5() {
 		}
 		return false;
 	}
+
+	bool ScreenReaderSapi5::speak_text(const wchar_t* text,bool interrupt, with_ssml) {
+		if (this->module != nullptr) {
+			this->module->speak_text(text, interrupt, with_ssml);
+			return true;
+		}
+		return false;
+	}
+
 	bool ScreenReaderSapi5::stop_speech() {
 		if (this->module != nullptr) {
 			this->module->stop_speach();

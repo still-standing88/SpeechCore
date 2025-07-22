@@ -31,6 +31,8 @@ void SpeechDispatcher::init() {
     load_function(spd_get_volume, "spd_get_volume");
     load_function(spd_set_voice_rate, "spd_set_voice_rate");
     load_function(spd_get_voice_rate, "spd_get_voice_rate");
+    load_function(spd_set_voice_pitch, "spd_set_voice_pitch");
+    load_function(spd_get_voice_pitch, "spd_get_voice_pitch");
 
     if (spd_get_default_address && spd_open2) {
         const auto* address = spd_get_default_address(nullptr);
@@ -72,6 +74,10 @@ bool SpeechDispatcher::speak_text(const wchar_t* text, bool interrupt) {
     return spd_say(speech_connection, interrupt ? SPD_IMPORTANT : SPD_TEXT, utf8_text.data()) == 0;
 }
 
+bool SpeechDispatcher::speak_text(const wchar_t* text, bool interrupt, bool with_ssml) {
+return this->speak_text(text, interrupt);
+}
+
 bool SpeechDispatcher::stop_speech() {
     if (!speech_connection) return false;
     return spd_stop(speech_connection) == 0;
@@ -97,6 +103,17 @@ void SpeechDispatcher::set_rate(float offset) {
     if (!speech_connection) return;
     int rate = static_cast<int>(offset * 100.0f);
     spd_set_voice_rate(speech_connection, rate);
+}
+
+float SpeechDispatcher::get_pitch() const {
+    if (!speech_connection) return 0.0f;
+    return static_cast<float>(spd_get_voice_pitch(speech_connection)) / 100.0f;
+}
+
+void SpeechDispatcher::set_pitch(float offset) {
+    if (!speech_connection) return;
+    int pitch = static_cast<int>(offset * 100.0f);
+    spd_set_voice_pitch(speech_connection, pitch);
 }
 
 template<typename T>

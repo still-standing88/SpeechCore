@@ -142,7 +142,7 @@ extern "C" SPEECH_C_API void Speech_Init() {
 	drivers.push_back(nvda_driver);
 	drivers.push_back(jaws_driver);
 	drivers.push_back(pct_driver);
-	//drivers.push_back(sapi5_driver);
+	drivers.push_back(sapi5_driver);
 	drivers.push_back(sa_driver);
 	drivers.push_back(zdsr_driver);
 #elif defined(__APPLE__)
@@ -287,6 +287,25 @@ extern "C" SPEECH_C_API bool Speech_Output(const wchar_t* text, bool _interrupt)
 	return false;
 }
 
+extern "C" SPEECH_C_API bool Speech_Output(const wchar_t* text, bool interrupt, bool with_ssml) {
+	if (current_driver == nullptr) {
+		Speech_Detect_Driver();
+	}
+
+	if (current_driver != nullptr && current_driver->is_running() && text) {
+		return current_driver->speak_text(text, interrupt, with_ssml);
+	}
+	else {
+		Speech_Detect_Driver();
+
+		if (current_driver != nullptr && !current_driver->is_running() && text) {
+			return current_driver->speak_text(text, interrupt, with_ssml);
+}
+		return false;
+	}
+	return false;
+}
+
 extern "C" SPEECH_C_API bool Speech_Braille(const wchar_t* text) {
 	if (current_driver == nullptr) {
 		Speech_Detect_Driver();
@@ -333,6 +352,16 @@ extern "C" SPEECH_C_API void Speech_Set_Rate(float offset) {
 	}
 }
 
+
+extern "C" SPEECH_C_API float Speech_Get_Pitch() {
+	return (current_driver != nullptr) ? current_driver->get_pitch() : -1;
+}
+
+extern "C" SPEECH_C_API void Speech_Set_Pitch(float offset) {
+	if (current_driver != nullptr && offset >=0 ) {
+		current_driver->set_pitch(offset);
+	}
+}
 
 extern "C" SPEECH_C_API const wchar_t* Speech_Get_Current_Voice() {
 	return (current_driver != nullptr) ? current_driver->get_current_voice() : NULL;

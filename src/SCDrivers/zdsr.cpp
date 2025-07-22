@@ -5,9 +5,11 @@ ScreenReaderZhengdu::ScreenReaderZhengdu() :
 	module(nullptr),Is_Active(false), loaded(false), result(0) {
 
 }
+
 ScreenReaderZhengdu::~ScreenReaderZhengdu() {
 	this->release();
 	}
+
 void ScreenReaderZhengdu::init() {
 	if (!this->loaded || this->module ==nullptr) {
 		this->module = new ZDSRAPI();
@@ -17,6 +19,7 @@ void ScreenReaderZhengdu::init() {
 		this->is_running();
 	}
 }
+
 	void ScreenReaderZhengdu::release() {
 		this->loaded = false;
 		this->Is_Active = false;
@@ -24,6 +27,7 @@ void ScreenReaderZhengdu::init() {
 		delete this->module;
 		this->module = nullptr;
 	}
+
 	bool ScreenReaderZhengdu::is_running() {
 		if (this->module->InitTTS) {
 			this->result = this->module->InitTTS(0, NULL);
@@ -32,6 +36,7 @@ void ScreenReaderZhengdu::init() {
 		this->Is_Active = false;
 		return this->Is_Active;
 	}
+
 	bool ScreenReaderZhengdu::speak_text(const wchar_t* text,bool interrupt) {
 		WCHAR* txt = reinterpret_cast<WCHAR*>(&text);
 		if (this->module != nullptr) {
@@ -40,6 +45,12 @@ return (this->result == 0) ? true : false;
 }
 		return false;
 	}
+
+
+	bool ScreenReaderZhengdu::speak_text(const wchar_t* text,bool interrupt, bool with_ssml) {
+return this->speak_text(text, interrupt);
+}
+
 	bool ScreenReaderZhengdu::is_speaking() {
 		if (this->module != nullptr) {
 this->result = this->module->GetSpeakState();

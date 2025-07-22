@@ -14,6 +14,7 @@ public:
     bool is_running() override;
     bool is_speaking() override;
     bool speak_text(const wchar_t* text, bool interrupt = false) override;
+	bool speak_text(const wchar_t* text, bool interrupt = false, bool with_ssml= false) override;
     bool stop_speech() override;
     void resume_speech() override;
     void pause_speech() override;
@@ -25,6 +26,9 @@ public:
     void set_voice(int index) override;
     const wchar_t* get_current_voice() const override;
     int get_voices() const override;
+	virtual float get_pitch() const override;
+	virtual void set_pitch(float offset) override;
+
 
 private:
     AVTTSVoice* m_tts;

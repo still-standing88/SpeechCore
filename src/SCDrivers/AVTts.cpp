@@ -65,6 +65,11 @@ bool AVTTSVoiceDriver::speak_text(const wchar_t* text, bool interrupt) {
     return false;
 }
 
+
+bool AVTTSVoiceDriver::speak_text(const wchar_t* text, bool interrupt, bool with_ssml) {
+return this->speak_text(text, interrupt);
+}
+
 bool AVTTSVoiceDriver::stop_speech() {
     return m_tts && m_tts->stopSpeech();
 }
@@ -100,6 +105,17 @@ void AVTTSVoiceDriver::set_rate(float offset) {
     if (m_tts) {
         float newRate = std::max(0.0f, std::min(1.0f, get_rate() + offset));
         m_tts->setRate(newRate);
+    }
+}
+
+float AVTTSVoiceDriver::get_pitch() const {
+    return m_tts ? m_tts->getPitch() : 0.0f;
+}
+
+void AVTTSVoiceDriver::set_pitch(float offset) {
+    if (m_tts) {
+        float newPitch = std::max(0.0f, std::min(1.0f, get_volume() + offset));
+        m_tts->setPitch(newPitch);
     }
 }
 

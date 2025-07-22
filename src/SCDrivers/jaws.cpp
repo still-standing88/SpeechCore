@@ -63,6 +63,10 @@ auto res = this->module->SayString(str,interrupt_speach,&bool_var);
 		return false;
 	}
 
+	bool ScreenReaderJaws::speak_text(const wchar_t* text, bool interrupt, bool with_ssml) {
+return this->speak_text(text, interrupt);
+}
+
 bool ScreenReaderJaws::output_braille(const wchar_t* text) {
     if (this->module != nullptr && text != nullptr) {
         

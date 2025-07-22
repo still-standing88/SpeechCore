@@ -41,11 +41,11 @@ public:
 	bool is_running() override;
 
 	bool speak_text(const wchar_t* text, bool interrupt = false) override;
+	bool speak_text(const wchar_t* text, bool interrupt = false, bool with_ssml= false) override;
 	bool output_braille(const wchar_t* text) override;
 	bool stop_speech() override;
 
 private:
 	static ScreenReaderNVDA* currentInstance;
 	static error_status_t __stdcall markReachedCallback(const wchar_t* mark);
-
 };

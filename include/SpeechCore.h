@@ -44,6 +44,7 @@
 #define SC_HAS_SPEECH (1<<4)
 #define SC_HAS_BRAILLE (1<<5)
 #define SC_HAS_SPEECH_STATE (1<<6)
+#define SC_SSML_SUPPORT(1<<7)
 
 #ifdef __cplusplus
 #include <cstdint>
@@ -128,6 +129,16 @@ extern "C" {
 	 */
 	SPEECH_C_API bool Speech_Output(const wchar_t* text, bool _interrupt = false);
 
+
+	/**
+	 * @brief Outputs a given string to be spoken by the currently used/detected screen reader.
+	 * @param text A const wchar_t string representing the text to be spoken.
+	 * @param interrupt Whether to interrupt the current speech segment. Default is false.
+	 * @param with_ssml Whether to enable ssml support if the current driver supports it. Disabled by default.
+	 * @return A bool indicating if the operation was successful.
+	 */
+	SPEECH_C_API bool Speech_Output_text(const wchar_t* text, bool interrupt = false, bool with_ssml = false);
+
 	/**
 	 * @brief Outputs a given string to the braille display if supported.
 	 * @param text A const wchar_t string representing the text to be displayed in braille.
@@ -164,6 +175,18 @@ extern "C" {
 	 * @param offset A float representing the rate to be set.
 	 */
 	SPEECH_C_API void Speech_Set_Rate(float offset);
+
+	/**
+	 * @brief Gets the pitch speed parameter for the current screen reader if supported.
+	 * @return A float representing the pitch  value.
+	 */
+	SPEECH_C_API float Speech_Get_Pitch();
+
+	/**
+	 * @brief Sets the pitch/speed for the current screen reader if supported.
+	 * @param offset A float representing the pitch to be set.
+	 */
+	SPEECH_C_API void Speech_Set_Pitch(float offset);
 
 	/**
 	 * @brief Retrieves the current voice of the active screen reader if supported.

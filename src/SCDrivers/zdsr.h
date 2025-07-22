@@ -22,6 +22,7 @@ public:
 	bool is_speaking() override;
 	bool is_running() override;
 	bool speak_text(const wchar_t* _text,bool interrupt=false) override;
+	bool speak_text(const wchar_t* text, bool interrupt = false, bool with_ssml= false) override;
 	bool stop_speech() override;
 	int is_active() { return this->result; }
 };

@@ -83,6 +83,10 @@ if (this->module) {
 		return false;
 	}
 
+	bool ScreenReaderNVDA::speak_text(const wchar_t* text,bool interrupt, with_ssml) {
+return this->speak_text(text, interrupt);
+}
+
 	bool ScreenReaderNVDA::output_braille(const wchar_t* text) {
 if (this->module && nvdaController_brailleMessage_fn && text) {
 auto state = nvdaController_brailleMessage_fn(text);
