@@ -9,6 +9,8 @@ public class SpeechCore implements AutoCloseable {
     public static final int SC_FILE_OUTPUT = 1 << 3;
     public static final int SC_HAS_SPEECH = 1 << 4;
     public static final int SC_HAS_BRAILLE = 1 << 5;
+    public static final int SC_HAS_SPEECH_STATE = 1 << 6;
+    public static final int SC_SSML_SUPPORT = 1 << 7;
 
     private native void Speech_Init();
     private native void Speech_Free();
@@ -21,13 +23,15 @@ public class SpeechCore implements AutoCloseable {
     private native boolean Speech_Is_Loaded();
     private native boolean Speech_Is_Speaking();
     private native boolean Speech_Output(String text, boolean interrupt);
+    private native boolean Speech_Output_text(String text, boolean interrupt, boolean with_ssml);
     private native boolean Speech_Braille(String text);
-
     private native boolean Speech_Stop();
     private native float Speech_Get_Volume();
     private native void Speech_Set_Volume(float offset);
     private native float Speech_Get_Rate();
     private native void Speech_Set_Rate(float offset);
+    private native float Speech_Get_Pitch();
+    private native void Speech_Set_Pitch(float pitch);
     private native String Speech_Get_Current_Voice();
     private native String Speech_Get_Voice(int index);
     private native void Speech_Set_Voice(int index);
@@ -60,10 +64,11 @@ public class SpeechCore implements AutoCloseable {
         Speech_Init();
     }
 
-@Override
-public void close() {
-    Speech_Free();
-}
+    @Override
+    public void close() {
+        Speech_Free();
+    }
+
     public void detectDriver() {
         Speech_Detect_Driver();
     }
@@ -71,6 +76,7 @@ public void close() {
     public String currentDriver() {
         return Speech_Current_Driver();
     }
+
     public String getDriver(int index) {
         return Speech_Get_Driver(index);
     }
@@ -99,6 +105,10 @@ public void close() {
         return Speech_Output(text, interrupt);
     }
 
+    public boolean speakWithSSML(String text, boolean interrupt, boolean with_ssml) {
+        return Speech_Output_text(text, interrupt, with_ssml);
+    }
+
     public boolean outputBraille(String text) {
         return Speech_Braille(text);
     }
@@ -121,6 +131,14 @@ public void close() {
 
     public void setRate(float rate) {
         Speech_Set_Rate(rate);
+    }
+
+    public float getPitch() {
+        return Speech_Get_Pitch();
+    }
+
+    public void setPitch(float pitch) {
+        Speech_Set_Pitch(pitch);
     }
 
     public String getCurrentVoice() {

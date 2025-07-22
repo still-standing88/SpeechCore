@@ -19,6 +19,11 @@ extern "C" {
 #define SpeechCore_SC_HAS_SPEECH 16L
 #undef SpeechCore_SC_HAS_BRAILLE
 #define SpeechCore_SC_HAS_BRAILLE 32L
+#undef SpeechCore_SC_HAS_SPEECH_STATE
+#define SpeechCore_SC_HAS_SPEECH_STATE 64L
+#undef SpeechCore_SC_SSML_SUPPORT
+#define SpeechCore_SC_SSML_SUPPORT 128L
+
 /*
  * Class:     SpeechCore
  * Method:    Speech_Init
@@ -109,6 +114,14 @@ JNIEXPORT jboolean JNICALL Java_SpeechCore_Speech_1Output
 
 /*
  * Class:     SpeechCore
+ * Method:    Speech_Output_text
+ * Signature: (Ljava/lang/String;ZZ)Z
+ */
+JNIEXPORT jboolean JNICALL Java_SpeechCore_Speech_1Output_1text
+  (JNIEnv *, jobject, jstring, jboolean, jboolean);
+
+/*
+ * Class:     SpeechCore
  * Method:    Speech_Braille
  * Signature: (Ljava/lang/String;)Z
  */
@@ -153,6 +166,22 @@ JNIEXPORT jfloat JNICALL Java_SpeechCore_Speech_1Get_1Rate
  * Signature: (F)V
  */
 JNIEXPORT void JNICALL Java_SpeechCore_Speech_1Set_1Rate
+  (JNIEnv *, jobject, jfloat);
+
+/*
+ * Class:     SpeechCore
+ * Method:    Speech_Get_Pitch
+ * Signature: ()F
+ */
+JNIEXPORT jfloat JNICALL Java_SpeechCore_Speech_1Get_1Pitch
+  (JNIEnv *, jobject);
+
+/*
+ * Class:     SpeechCore
+ * Method:    Speech_Set_Pitch
+ * Signature: (F)V
+ */
+JNIEXPORT void JNICALL Java_SpeechCore_Speech_1Set_1Pitch
   (JNIEnv *, jobject, jfloat);
 
 /*
