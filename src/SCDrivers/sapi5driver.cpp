@@ -1,8 +1,9 @@
 #include "sapi5driver.h"
 
 ScreenReaderSapi5::ScreenReaderSapi5(Sapi5Speech *sapi_instance):
-	ScreenReader(L"Sapi5",SC_VOICE_CONFIG|SC_SPEECH_FLOW_CONTROL|SC_SPEECH_PARAMETER_CONTROL|SC_FILE_OUTPUT | SC_HAS_SPEECH_STATE),
-	loaded(false),Is_Active(false),module(sapi_instance) {
+	ScreenReader(L"Sapi5", SC_HAS_SPEECH, SC_VOICE_CONFIG | SC_SPEECH_FLOW_CONTROL |
+SC_SPEECH_PARAMETER_CONTROL | SC_FILE_OUTPUT | SC_HAS_SPEECH_STATE),
+	loaded(false), Is_Active(false),module(sapi_instance) {
 
 }
 ScreenReaderSapi5::~ScreenReaderSapi5() {
