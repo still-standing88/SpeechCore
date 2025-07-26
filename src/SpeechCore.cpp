@@ -142,7 +142,10 @@ extern "C" SPEECH_C_API void Speech_Init() {
 	drivers.push_back(nvda_driver);
 	drivers.push_back(jaws_driver);
 	drivers.push_back(pct_driver);
-	drivers.push_back(sapi5_driver);
+	// This is left here for completeness.
+// Do not uncomment line as it will force Sapi to be the default speech driver even of an outside binary is detected.
+	// This is mainly do to old library logic which won't be modified at the moment.
+	//drivers.push_back(sapi5_driver);
 	drivers.push_back(sa_driver);
 	drivers.push_back(zdsr_driver);
 #elif defined(__APPLE__)
