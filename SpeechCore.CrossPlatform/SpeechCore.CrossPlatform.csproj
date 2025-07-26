@@ -9,7 +9,7 @@
     
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageId>SpeechCore.CrossPlatform</PackageId>
-    <Version>1.0.0</Version>
+    <Version>1.1.0</Version>
     <Authors>Oussama Ben Gatrane</Authors>
     <Company>None</Company>
     <Product>SpeechCore</Product>

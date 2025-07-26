@@ -140,7 +140,7 @@ class postCleanup(bdist_wheel):
 
 setup(
     name="SpeechCore",
-    version="1.0.2",
+    version="1.1.0",
     author="still-standing88",
     url="https://github.com/still-standing88/speech-core/",
     description="Python wrapper for the SpeechCore library (pybind11)",
