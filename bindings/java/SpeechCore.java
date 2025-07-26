@@ -23,7 +23,7 @@ public class SpeechCore implements AutoCloseable {
     private native boolean Speech_Is_Loaded();
     private native boolean Speech_Is_Speaking();
     private native boolean Speech_Output(String text, boolean interrupt);
-    private native boolean Speech_Output_text(String text, boolean interrupt, boolean with_ssml);
+    private native boolean Speech_Output_Text(String text, boolean interrupt, boolean with_ssml);
     private native boolean Speech_Braille(String text);
     private native boolean Speech_Stop();
     private native float Speech_Get_Volume();
@@ -106,7 +106,7 @@ public class SpeechCore implements AutoCloseable {
     }
 
     public boolean speakWithSSML(String text, boolean interrupt, boolean with_ssml) {
-        return Speech_Output_text(text, interrupt, with_ssml);
+        return Speech_Output_Text(text, interrupt, with_ssml);
     }
 
     public boolean outputBraille(String text) {

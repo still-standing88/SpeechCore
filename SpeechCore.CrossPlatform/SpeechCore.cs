@@ -59,13 +59,13 @@ public class SpeechCore : IDisposable
     [return: MarshalAs(UnmanagedType.Bool)]
     private static extern bool Speech_Output_Unix(IntPtr textPtr, [MarshalAs(UnmanagedType.Bool)] bool interrupt);
 
-    [DllImport(DllName, EntryPoint = "Speech_Output_text")]
+    [DllImport(DllName, EntryPoint = "Speech_Output_Text")]
     [return: MarshalAs(UnmanagedType.Bool)]
-    private static extern bool Speech_Output_text_Windows([MarshalAs(UnmanagedType.LPWStr)] string text, [MarshalAs(UnmanagedType.Bool)] bool interrupt, [MarshalAs(UnmanagedType.Bool)] bool with_ssml);
+    private static extern bool Speech_Output_Text_Windows([MarshalAs(UnmanagedType.LPWStr)] string text, [MarshalAs(UnmanagedType.Bool)] bool interrupt, [MarshalAs(UnmanagedType.Bool)] bool with_ssml);
 
-    [DllImport(DllName, EntryPoint = "Speech_Output_text")]
+    [DllImport(DllName, EntryPoint = "Speech_Output_Text")]
     [return: MarshalAs(UnmanagedType.Bool)]
-    private static extern bool Speech_Output_text_Unix(IntPtr textPtr, [MarshalAs(UnmanagedType.Bool)] bool interrupt, [MarshalAs(UnmanagedType.Bool)] bool with_ssml);
+    private static extern bool Speech_Output_Text_Unix(IntPtr textPtr, [MarshalAs(UnmanagedType.Bool)] bool interrupt, [MarshalAs(UnmanagedType.Bool)] bool with_ssml);
 
     [DllImport(DllName, EntryPoint = "Speech_Braille")]
     [return: MarshalAs(UnmanagedType.Bool)]
@@ -312,14 +312,14 @@ public class SpeechCore : IDisposable
 
         if (IsWindows)
         {
-            return Speech_Output_text_Windows(text, interrupt, with_ssml);
+            return Speech_Output_Text_Windows(text, interrupt, with_ssml);
         }
         else
         {
             IntPtr textPtr = StringToWChar(text);
             try
             {
-                return Speech_Output_text_Unix(textPtr, interrupt, with_ssml);
+                return Speech_Output_Text_Unix(textPtr, interrupt, with_ssml);
             }
             finally
             {

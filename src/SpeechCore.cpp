@@ -290,7 +290,7 @@ extern "C" SPEECH_C_API bool Speech_Output(const wchar_t* text, bool _interrupt)
 	return false;
 }
 
-extern "C" SPEECH_C_API bool Speech_Output_text(const wchar_t* text, bool interrupt, bool with_ssml) {
+extern "C" SPEECH_C_API bool Speech_Output_Text(const wchar_t* text, bool interrupt, bool with_ssml) {
 	if (current_driver == nullptr) {
 		Speech_Detect_Driver();
 	}

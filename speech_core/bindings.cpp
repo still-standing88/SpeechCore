@@ -81,7 +81,7 @@ PYBIND11_MODULE(SpeechCore, m) {
     m.def("output_text", [](const std::string& text, bool interrupt = false, bool with_ssml = false) -> bool {
         static thread_local std::wstring wtext_holder;
         wtext_holder = string_to_wstring(text);
-        return Speech_Output_text(wtext_holder.c_str(), interrupt, with_ssml);
+        return Speech_Output_Text(wtext_holder.c_str(), interrupt, with_ssml);
     }, py::arg("text"), py::arg("interrupt") = false, py::arg("with_ssml") = false);
     
     m.def("braille", [](const std::string& text) -> bool {

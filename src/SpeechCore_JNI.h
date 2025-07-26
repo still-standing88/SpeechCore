@@ -117,7 +117,7 @@ JNIEXPORT jboolean JNICALL Java_SpeechCore_Speech_1Output
  * Method:    Speech_Output_text
  * Signature: (Ljava/lang/String;ZZ)Z
  */
-JNIEXPORT jboolean JNICALL Java_SpeechCore_Speech_1Output_1text
+JNIEXPORT jboolean JNICALL Java_SpeechCore_Speech_1Output_1Text
   (JNIEnv *, jobject, jstring, jboolean, jboolean);
 
 /*
