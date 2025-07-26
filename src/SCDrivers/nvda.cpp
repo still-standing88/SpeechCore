@@ -62,29 +62,34 @@ ScreenReaderNVDA::~ScreenReaderNVDA() {
 	}
 
 	bool ScreenReaderNVDA::speak_text(const wchar_t* text,bool interrupt) {
-if (this->module) {
-	if (nvdaController_speakSsml_fn && this->nvdaController_setOnSsmlMarkReachedCallback_fn) {
-		this->IsSpeaking = true;
+	if (this->module) {
+		if (interrupt) {
+			nvdaController_cancelSpeech_fn();
+		}
+		auto state = nvdaController_speakText_fn(text);
+		return (state == 0) ? true : false;
+	}
+		return false;
+	}
 
+	bool ScreenReaderNVDA::output_text(const wchar_t* text,bool interrupt, bool with_ssml) {
+if (this->module) {
+	if (with_ssml && nvdaController_speakSsml_fn && this->nvdaController_setOnSsmlMarkReachedCallback_fn) {
+		this->IsSpeaking = true;
 		size_t length = wcslen(text);
 		wchar_t* ssmlText = new wchar_t[length + 100];
 		SPEECH_PRIORITY priority = interrupt ? SPEECH_PRIORITY_NOW : SPEECH_PRIORITY_NORMAL;
 
 		swprintf(ssmlText, L"<speak>%s<mark name='end_of_speech'/></speak>", text);
 		auto state = nvdaController_speakSsml_fn(ssmlText, SYMBOL_LEVEL_UNCHANGED, priority, true);
-		delete ssmlText;
+		delete[] ssmlText;
 		return (state == 0) ? true : false;
 	}
 	else {
-		auto state = nvdaController_speakText_fn(text, interrupt);
-		return (state == 0) ? true : false;
+		this->speak_text(text, interrupt);
 	}
 		}
 		return false;
-	}
-
-	bool ScreenReaderNVDA::output_text(const wchar_t* text,bool interrupt, bool with_ssml) {
-return this->speak_text(text, interrupt);
 }
 
 	bool ScreenReaderNVDA::output_braille(const wchar_t* text) {

@@ -9,7 +9,7 @@
 #endif
 
 typedef error_status_t(__stdcall* NvdaController_testIfRunning_t)(void);
-typedef error_status_t(__stdcall* NvdaController_speakText_t)(const wchar_t* text,bool interrupt);
+typedef error_status_t(__stdcall* NvdaController_speakText_t)(const wchar_t* text);
 typedef error_status_t(__stdcall* NvdaController_cancelSpeech_t)(void);
 typedef error_status_t(__stdcall* NvdaController_speakSsml_t)(const wchar_t* ssml, const SYMBOL_LEVEL symbolLevel, const SPEECH_PRIORITY priority, const boolean asynchronous);
 typedef error_status_t(__stdcall* NvdaController_brailleMessage_t)(const wchar_t* message);
