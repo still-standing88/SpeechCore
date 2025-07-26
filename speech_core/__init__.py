@@ -9,7 +9,7 @@ import os, sys
 
 from .__speech_common import *
 from .SpeechCore import (
-    init, is_loaded, free, resume, pause, stop,
+    init, is_loaded, free, resume, pause, stop, prefer_sapi,
     output, output_text, output_file, braille,
     set_driver, get_driver, get_drivers, current_driver, detect_driver,
     get_voice, get_voices, get_current_voice, set_voice,
@@ -19,10 +19,7 @@ from .SpeechCore import (
     )
 
 if sys.platform == "win32":
-    from .__speech_common import prefer_sapi
     from .__speech_sapi import Sapi
-    
-    module_path = os.path.dirname(os.path.abspath(__file__))
 
 
 def add_dll_directory(dll_path):
