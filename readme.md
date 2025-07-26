@@ -56,13 +56,13 @@ Documentation can be found [here](https://still-standing88.github.io/SpeechCoreD
 
 ## Library Notes
 
-* Windows screen readers (NVDA, JAWS, Zhengdu, and System Access) require specific binaries, included with the source code.
+* Windows screen readers (NVDA, JAWS, Zhengdu, PCTalker, and System Access) require specific binaries, included with the source code.
 * Enhanced control over SAPI 5, including voice configuration and speech parameters.
-* Braille output functionality is included but not yet implemented.
+* Braille output functionality is included and implemented for the screen readers that support it. Mainly NVDA and Jaws
 
 ## Supported Screen Readers
 
-* Windows: NVDA, JAWS, System Access, Zhengdu Screen Reader, SAPI 5
+* Windows: NVDA, JAWS, System Access, Zhengdu Screen Reader, PCTalker, SAPI 5
 * macOS: AVSpeech
 * Linux: Speech Dispatcher
 
@@ -70,17 +70,33 @@ Documentation can be found [here](https://still-standing88.github.io/SpeechCoreD
 
 Bindings are available for Python, .NET/C#, and Java.
 
+For Python
 Install python bindings via pip:
 ```bash
-pip install speech_core
+pip install SpeechCore
 ```
 
+Dotnet
+Install via NuGet Package Manager:
+```bash
+dotnet add package SpeechCore.CrossPlatform
+```
+Or via Package Manager Console in Visual Studio:
+```bash
+Install-Package SpeechCore.CrossPlatform
+```
 
 ## Credits
 
 This library was inspired by [Tolk](https://github.com/dkager/tolk/), with adaptations for more flexibility. It was initially developed for personal projects and later expanded to be cross-platform.
 
 ## Change Log
+
+### Version 1.0.0
+* Fixed NVDA speech interrupt functionality.
+* New functions available on api:
+  * `Speech_Set_Pitch` and `Speech_Get_Pitch`. For controling pitch parameter for drivers that support it.
+  * `Speech_Output_Text`. An enhanced speech function which includes an with_ssml parameter to use if the speech driver supports it. The SC_SSML_SUPPORT an be used to check if it does.
 
 ### Version 1.0.2
 * Added PCTalker screen reader support.
@@ -96,3 +112,10 @@ Contributions to the library or support for additional screen readers are welcom
 ## License
 
 [MIT License](LICENSE)
+
+## Todo List
+[ ] Implement Android/iOS support
+
+[ ] Add Meson build files
+
+[ ] Add CMake build files
