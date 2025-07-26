@@ -1,5 +1,5 @@
 __pycash__/
-doxygen_output
+doxygen_output/
 .sconf_temp/
 .vs/
 build/
