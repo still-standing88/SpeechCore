@@ -137,7 +137,7 @@ extern "C" {
 	 * @param with_ssml Whether to enable ssml support if the current driver supports it. Disabled by default.
 	 * @return A bool indicating if the operation was successful.
 	 */
-	SPEECH_C_API bool Speech_Output_text(const wchar_t* text, bool interrupt = false, bool with_ssml = false);
+	SPEECH_C_API bool Speech_Output_Text(const wchar_t* text, bool interrupt = false, bool with_ssml = false);
 
 	/**
 	 * @brief Outputs a given string to the braille display if supported.
