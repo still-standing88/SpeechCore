@@ -22,7 +22,7 @@ def build_python_wheel(target, source, env):
     os.environ['PYTHON_BUILD_TYPE'] = build_type    
 
     try:
-        cmd = f"{sys.executable} setup.py bdist_wheel"
+        cmd = f"{sys.executable} setup.py sdist bdist_wheel"
         result = os.system(cmd)
         if result != 0:
             print("ERROR: Python wheel build failed")
