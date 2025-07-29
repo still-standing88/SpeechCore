@@ -42,9 +42,9 @@ class SpeechCore:
             free()
 
     @classmethod
-    def prefer_sapi(cls, prefer_sapi: bool):
+    def prefer_sapi(cls, prefer_sapi_: bool):
         if sys.platform == "win32":
-            prefer_sapi(prefer_sapi)
+            prefer_sapi(prefer_sapi_)
 
     @classmethod
     def is_loaded(cls) -> bool:
