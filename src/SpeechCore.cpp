@@ -198,7 +198,7 @@ void set_driver() {
 }
 
 extern "C" SPEECH_C_API void Speech_Detect_Driver() {
-	if (current_driver == nullptr) {
+	if (current_driver == nullptr || current_driver != nullptr) {
 #ifdef _WIN32
 		if (PREFER_SAPI) {
 			current_driver = sapi5_driver;
