@@ -92,7 +92,10 @@ This library was inspired by [Tolk](https://github.com/dkager/tolk/), with adapt
 
 ## Change Log
 
-### Version 1.0.0
+### Version 1.1.1
+* The Speech_Detect_Driver now rescans for drivers on Windows even if one is currently running. 
+
+### Version 1.1.0
 * Fixed NVDA speech interrupt functionality.
 * New functions available on api:
   * `Speech_Set_Pitch` and `Speech_Get_Pitch`. For controling pitch parameter for drivers that support it.
@@ -114,8 +117,6 @@ Contributions to the library or support for additional screen readers are welcom
 [MIT License](LICENSE)
 
 ## Todo List
-[ ] Implement Android/iOS support
-
-[ ] Add Meson build files
-
-[ ] Add CMake build files
+- [ ] Implement Android/iOS support
+- [ ] Add Meson build files
+- [ ] Add CMake build files
