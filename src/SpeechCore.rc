@@ -1,8 +1,8 @@
 #include <winver.h>
 
 VS_VERSION_INFO VERSIONINFO
- FILEVERSION 1,1,0,0
- PRODUCTVERSION 1,1,0,0
+ FILEVERSION 1,1,1,0
+ PRODUCTVERSION 1,1,1,0
  FILEFLAGSMASK 0x3fL
  FILEFLAGS 0x0L
  FILEOS VOS__WINDOWS32
@@ -14,12 +14,12 @@ VS_VERSION_INFO VERSIONINFO
         {
             VALUE "CompanyName", "Oussama Ben Gatrane"
             VALUE "FileDescription", "Cross-platform C++ library for screen reader output."
-            VALUE "FileVersion", "1.1.0"
+            VALUE "FileVersion", "1.1.1"
             VALUE "InternalName", "SpeechCore"
             VALUE "LegalCopyright", "Copyright (C) 2024 Oussama Ben Gatrane"
             VALUE "OriginalFilename", "SpeechCore.dll"
             VALUE "ProductName", "SpeechCore Library"
-            VALUE "ProductVersion", "1.1.0"
+            VALUE "ProductVersion", "1.1.1"
             VALUE "Author", "Oussama AKA Still standing"
             VALUE "License", "MIT License"
         }
