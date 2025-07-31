@@ -19,3 +19,8 @@ lib/
 *.log
 *.cash
 *.swp
+
+# VideoEditor .NET build artifacts
+VideoEditor/bin/
+VideoEditor/obj/
+VideoEditor/*.log
